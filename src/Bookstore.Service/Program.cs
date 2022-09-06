@@ -15,10 +15,16 @@ void ConfigureRhetosHostBuilder(IServiceProvider serviceProvider, IRhetosHostBui
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(o => o.CustomSchemaIds(type => type.ToString())); //CustomSchemaIds allows multiple enetities with the same name in different modules
 builder.Services.AddRhetosHost(ConfigureRhetosHostBuilder)
     .AddAspNetCoreIdentityUser()
-    .AddHostLogging();
+    .AddHostLogging()
+    .AddDashboard()
+    .AddRestApi(o =>
+    {
+        o.BaseRoute = "rest";
+        o.GroupNameMapper = (conceptInfo, contorller, oldName) => "v1";
+    });
 
 var app = builder.Build();
 
@@ -33,6 +39,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseRhetosRestApi();
+
 app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+    app.MapRhetosDashboard();
 
 app.Run();
