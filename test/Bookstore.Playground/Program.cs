@@ -10,13 +10,4 @@ using (var scope = LinqPadRhetosHost.CreateScope(rhetosHostAssemblyPath))
 {
     var context = scope.Resolve<Common.ExecutionContext>();
     var repository = context.Repository;
-
-    var filterParameter = new Bookstore.LongBooks3
-    {
-        MinimumPages = 100,
-        ForeignBooksOnly = true
-    };
-    var query = repository.Bookstore.Book.Query(filterParameter);
-    query.ToString().Dump(); // Print the SQL query.
-    query.ToSimple().ToList().Dump(); // Load and print the books.
 }
