@@ -2,21 +2,26 @@ Module Bookstore
 {
     Entity Book
     {
-        ShortString Code { Unique; Required; }
+        ShortString Code { Unique; Required; AutoCode; }
         ShortString Title { Required; }
-        Integer NumberOfPages;
+        Integer NumberOfPages { MaxValue 50; }
         Reference Author Bookstore.Person;
     }
 
     Entity Person
     {
-        ShortString Name;
+        ShortString Name {DefaultValue "Mislav";}
+        DateTime DatumKreacije { Creationtime; DenyUserEdit; }
+
+        Logging { AllProperties; }
     }
 
     Entity Comment
     {
         Reference Book { Detail; }
         LongString Text;
+
+        Deactivatable;
     }
 
     Entity ChildrensBook
@@ -66,7 +71,7 @@ Module Bookstore
     {
         Reference Employees;
 
-        Date Datum;
+        DateTime Datum { ModificationTimeOf Bookstore.Education.Description;}
         ShortString Description;
     }
 
