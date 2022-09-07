@@ -46,5 +46,9 @@ using (var scope = LinqPadRhetosHost.CreateScope(rhetosHostAssemblyPath))
 
     repository.Bookstore.InsertBooks.Execute(actionParameter);
 
+    var filterParameter = new Bookstore.LongBooks();
+    var query1 = repository.Bookstore.Book.Query(filterParameter);
+    query1.ToString().Dump();
+    query1.ToSimple().ToList().Dump();
     //scope.CommitAndClose();
 }
