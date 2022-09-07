@@ -2,10 +2,21 @@ Module Bookstore
 {
     Entity Book
     {
-        ShortString Code { Unique; Required; AutoCode; }
+        ShortString Code { AutoCode; }
         ShortString Title { Required; }
-        Integer NumberOfPages { MaxValue 50; }
+        Integer NumberOfPages;
+
         Reference Author Bookstore.Person;
+
+        ItemFilter LongBooks 'item => item.NumberOfPages >= 500';
+
+        ItemFilter CommonMisspelling 'book => book.Title.Contains("curiousity")';
+        InvalidData CommonMisspelling 'It is not allowed to enter misspelled word "curiousity". Please use "curiosity" instead.';
+
+        ItemFilter ForeignAuthorXWithComments 'item =>
+            item.Author.Name.StartsWith("X")
+            && item.Extension_ForeignBook.ID != null
+            && _domRepository.Bookstore.Comment.Subquery.Where(c => c.BookID == item.ID).Count() >= 3';
     }
 
     Browse BookGrid Bookstore.Book
@@ -13,7 +24,6 @@ Module Bookstore
         Take Code;
         Take Title;
         Take 'Author.Name';
-        Take TranslatorName 'Extension_ForeignBook.Translator.Name';
         Take NumberOfComments 'Extension_BookInfo.NumberOfComments';
     }
 
@@ -98,18 +108,12 @@ Module Bookstore
     Entity Person
     {
         ShortString Name;
-        DateTime DatumKreacije { Creationtime; DenyUserEdit; }
-
-        Logging { AllProperties; }
     }
 
     Entity Comment
     {
         Reference Book { Detail; }
-
         LongString Text;
-
-        Deactivatable;
     }
 
     Entity ChildrensBook
@@ -124,9 +128,7 @@ Module Bookstore
     Entity ForeignBook
     {
         Extends Bookstore.Book;
-
         ShortString OriginalLanguage;
-        Reference Translator Bookstore.Person;
     }
     Entity Topic
     {

@@ -45,5 +45,6 @@ using (var scope = LinqPadRhetosHost.CreateScope(rhetosHostAssemblyPath))
     };
 
     repository.Bookstore.InsertBooks.Execute(actionParameter);
-    scope.CommitAndClose();
+
+    //scope.CommitAndClose();
 }
