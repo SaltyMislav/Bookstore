@@ -1,22 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.Service", "src\Bookstore.Service\Bookstore.Service.csproj", "{00AA6D87-D489-48F2-8018-6998C42EBF47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookstore.Service", "src\Bookstore.Service\Bookstore.Service.csproj", "{00AA6D87-D489-48F2-8018-6998C42EBF47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2CD0D97F-E8C2-4F24-A4CD-65A0116B959E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.Playground", "test\Bookstore.Playground\Bookstore.Playground.csproj", "{F6EFADE6-4E9F-4F5C-AD4B-7C32FB55EB37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{00AA6D87-D489-48F2-8018-6998C42EBF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00AA6D87-D489-48F2-8018-6998C42EBF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00AA6D87-D489-48F2-8018-6998C42EBF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00AA6D87-D489-48F2-8018-6998C42EBF47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EFADE6-4E9F-4F5C-AD4B-7C32FB55EB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EFADE6-4E9F-4F5C-AD4B-7C32FB55EB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EFADE6-4E9F-4F5C-AD4B-7C32FB55EB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EFADE6-4E9F-4F5C-AD4B-7C32FB55EB37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6EFADE6-4E9F-4F5C-AD4B-7C32FB55EB37} = {2CD0D97F-E8C2-4F24-A4CD-65A0116B959E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66F52A7B-E0DB-4050-BAA7-9FD22B36458E}
 	EndGlobalSection
 EndGlobal
