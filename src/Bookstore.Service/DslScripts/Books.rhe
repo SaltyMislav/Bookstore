@@ -2,6 +2,8 @@ Module Bookstore
 {
     Entity Book
     {
+        MonitoredRecord;
+
         ShortString Code { AutoCode; }
         ShortString Title { Required; }
         Integer NumberOfPages;
