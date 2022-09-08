@@ -23,7 +23,7 @@ builder.Services.AddRhetosHost(ConfigureRhetosHostBuilder)
     .AddRestApi(o =>
     {
         o.BaseRoute = "rest";
-        o.GroupNameMapper = (conceptInfo, contorller, oldName) => "v1";
+        //o.GroupNameMapper = (conceptInfo, contorller, oldName) => "v1";
     });
 
 var app = builder.Build();
