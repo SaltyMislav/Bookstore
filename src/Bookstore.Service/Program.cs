@@ -1,4 +1,6 @@
 using Rhetos;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,13 @@ builder.Services.AddRhetosHost(ConfigureRhetosHostBuilder)
         //o.GroupNameMapper = (conceptInfo, contorller, oldName) => "v1";
     });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o => o.Events.OnRedirectToLogin = context =>
+    {
+        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+        return Task.CompletedTask;
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
