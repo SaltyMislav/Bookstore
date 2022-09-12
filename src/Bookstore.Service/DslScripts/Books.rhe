@@ -8,6 +8,22 @@ Module Bookstore
         ShortString Title { Required; }
         Integer NumberOfPages;
         Reference Author Bookstore.Person;
+        Reference AssignedTo Bookstore.Employees;
+
+
+        RowPermissions
+        {
+            AllowRead EveryoneCanRead 'context =>
+            {
+                return book => true;
+            }';
+
+            AllowWrite OwnerCanWrite 'context =>
+            {
+                return book => book.AssignedTo.Name == context.UserInfo.UserName;
+            }';
+        }
+
 
         ItemFilter LongBooks 'item => item.NumberOfPages >= 500';
 
@@ -152,6 +168,11 @@ Module Bookstore
     {
         Reference Book { Detail; }
         LongString Text;
+
+        RowPermissions
+        {
+            InheritFrom Bookstore.Comment.Book;
+        }
     }
 
     Entity ChildrensBook
