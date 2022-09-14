@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Rhetos.AfterDeploy" Version="5.0.0" />
     <PackageReference Include="Rhetos.CommonConcepts" Version="5.2.0" />
     <PackageReference Include="Rhetos.Host" Version="5.2.0" />
     <PackageReference Include="Rhetos.Host.AspNet" Version="5.2.0" />
